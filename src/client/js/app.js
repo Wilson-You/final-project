@@ -1,77 +1,72 @@
-const apiKey = '2fc35ac5705b02cd344cf81ccb07494f';
+const geoKey = 'wilsonyou'
 
-const cityID = 2172797;
+const geoURL = 'http://api.geonames.org/searchJSON'
 
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?id=';
+let cityName = 'newyork'
 
-const url = (baseURL + cityID + '&appid=' + apiKey);
+let geoURL = `${geoURL}?q=${cityName}&maxRows=10&username=${geoKey}`
 
-document.querySelector('#generate').addEventListener('click', autoFectchData);
+const weatherBitKey = '7cf6ed38ae2148f1b6c4f7c5f4800e3d'
+
+const weatherBitURL = 'http://api.weatherbit.io/v2.0/forecast/daily'
+
+// const cityName = 'Raleigh,NC'
+
+let bitURL = `${weatherBitKey}?city=${cityName}&key=${weatherBitURL}`
+
+const pixKey = '17198963-812b30f1b4baff708364953dc'
+
+const pixURL = 'https://pixabay.com/api/'
+
+let pixURL = `${pixURL}?key=${pixKey}&q=${cityName}`
+
+document.querySelector('#go').addEventListener('click', autoFectchData);
 
 function autoFectchData(e) {
-    getApiData(url)
+    getGeoInfo(geoURL)
         .then(function (data) {
             console.log(data)
-            postWeatherData('/postWeatherData', { 'date': new Date((data.dt) * 1000), 'temp': data.main.temp, 'feeling': document.getElementById('feelings').value })
-            updateUI()
+            // postWeatherData('/postWeatherData', { 'date': new Date((data.dt) * 1000), 'temp': data.main.temp, 'feeling': document.getElementById('feelings').value })
+            // updateUI()
         })
 }
 
-const getApiData = async (url) => {
-    const response = await fetch(url);
-    try {
-        const data = await response.json();
-        console.log(data);
-        return data;
-    } catch {
-        console.log("error", error);
-    }
-}
-// The following function actually is not used in this program
-const getWeatherData = async () => {
-    const request = await fetch('/getWeatherData');
-    try {
-        const data = await request.json();
-        console.log(data);
-
-    } catch (error) {
-        console.log('error', error);
-
+export function getGeoInfo() {
+    const geoInfoData = async (geoURL) => {
+        const response = await fetch(geoURL);
+        try {
+            const geoData = await response.json();
+            console.log(geoData);
+            return geoData;
+        } catch {
+            console.log("error", error);
+        }
     }
 }
 
-const postWeatherData = async (url = '', data = {}) => {
-    console.log(data);
-    const response = await fetch(url, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-    try {
-        const newData = await response.json();
-        console.log(newData);
-        return newData;
-    } catch (error) {
-        console.log('error', error);
-
+export function getFutureWeatherData() {
+    const weatherBitData = async (bitURL) => {
+        const response = await fetch(bitURL);
+        try {
+            const weatherData = await response.json();
+            console.log(weatherData);
+            return weatherData;
+        } catch {
+            console.log("error", error);
+        }
     }
-
 }
 
-const updateUI = async () => {
-    const request = await fetch('/getWeatherData');
-    try {
-        const allWeatherData = await request.json();
-        let date = new Date();
-        document.getElementById('date').innerHTML = allWeatherData.date;
-        document.getElementById('temp').innerHTML = allWeatherData.temp;
-        document.getElementById('content').innerHTML = allWeatherData.feeling;
-
-    } catch (error) {
-        console.log("error", error);
+export function getPixData() {
+    const pixBayData = async (pixURL) => {
+        const response = await fetch(pixURL);
+        try {
+            const pixData = await response.json();
+            console.log(pixData);
+            return pixData;
+        } catch {
+            console.log("error", error);
+        }
     }
 }
 

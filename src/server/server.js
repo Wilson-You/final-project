@@ -1,47 +1,25 @@
-const express = require('express');
+const dotenv = require('dotenv');
+dotenv.config()
+var path = require('path')
+const express = require('express')
+const mockAPIResponse = require('./mockAPI.js')
 
-const app = express();
+const app = express()
 
-const bodyPaser = require('body-parser');
+app.use(express.static('dist'))
 
-const cors = require('cors');
+console.log(__dirname)
 
-app.use(bodyPaser.urlencoded({ extended: false }));
+app.get('/', function (req, res) {
+    res.sendFile('dist/index.html')
+    // res.sendFile(path.resolve('src/client/views/index.html'))
+})
 
-app.use(bodyPaser.json());
+// designates what port the app will listen to for incoming requests
+app.listen(8081, function () {
+    console.log('App is listening on port 8081!')
+})
 
-app.use(cors());
-
-app.use(express.static('website'));
-
-const port = 7776;
-
-const server = app.listen(port, feedBack);
-
-function feedBack() {
-    console.log("The server is running on port", port);
-}
-
-let projectData = {};
-
-
-app.get('/getWeatherData', returnWeatherData);
-
-function returnWeatherData(req, res) {
-    res.send(projectData);
-}
-
-// const receivedData = [];
-app.post('/postWeatherData', addWeatherData);
-
-function addWeatherData(req, res) {
-    projectData = req.body;
-    res.send(projectData);
-    console.log(projectData);
-}
-
-// app.get('/receivedData', returnStoredData);
-
-// function returnStoredData(req, res) {
-//     res.send(receivedData);
-// }
+app.get('/test', function (req, res) {
+    res.send(mockAPIResponse)
+})
