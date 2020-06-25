@@ -36,6 +36,8 @@ export function getGeoInfo() {
         .then(data => {
             console.log(data)
             document.querySelector('#describe').innerHTML = data.data[0].weather.description
+            document.querySelector('#temp').innerHTML = data.data[0].temp + '℃'
+
 
         }
         )
