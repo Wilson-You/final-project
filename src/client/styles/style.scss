@@ -2,3 +2,29 @@ body{
     background: #fffff8;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+#img1 {
+    width: 40px;
+    height: 50px;
+}
+
+#city:hover {
+    box-shadow: 2px 2px 2px black;
+}
+
+#go:hover {
+    box-shadow: 2px 2px 2px grey;
+}
+
+.headline {
+    width: 100%;
+    margin: 10px;
+    color: blue;
+    font-size: 20px;
+}
+
+.cityinfo, button {
+    margin: 10px;
+}
+
+

@@ -1,27 +1,29 @@
+
 document.querySelector('#go').addEventListener('click', getGeoInfo);
-
-const geoKey = 'wilsonyou'
-
-const geoBaseUrl = 'http://api.geonames.org/searchJSON'
-
-let cityName = "New York" || document.querySelector('#city').value
-
-let geoURL = `${geoBaseUrl}?q=${cityName}&maxRows=10&username=${geoKey}`
-
-const weatherBitKey = '7cf6ed38ae2148f1b6c4f7c5f4800e3d'
-
-const weatherBitUrl = 'http://api.weatherbit.io/v2.0/forecast/daily'
-
-let bitURL = `${weatherBitUrl}?city=${cityName}&key=${weatherBitKey}`
-
-const pixKey = '17198963-812b30f1b4baff708364953dc'
-
-const pixBaseUrl = 'https://pixabay.com/api/'
-
-let pixURL = `${pixBaseUrl}?key=${pixKey}&q=${cityName}`
 
 
 export function getGeoInfo() {
+
+    let cityName = document.querySelector('#city').value
+
+    const geoKey = 'wilsonyou'
+
+    const geoBaseUrl = 'http://api.geonames.org/searchJSON'
+
+    let geoURL = `${geoBaseUrl}?q=${cityName}&maxRows=10&username=${geoKey}`
+
+    const weatherBitKey = '7cf6ed38ae2148f1b6c4f7c5f4800e3d'
+
+    const weatherBitUrl = 'http://api.weatherbit.io/v2.0/forecast/daily'
+
+    let bitURL = `${weatherBitUrl}?city=${cityName}&key=${weatherBitKey}`
+
+    const pixKey = '17198963-812b30f1b4baff708364953dc'
+
+    const pixBaseUrl = 'https://pixabay.com/api/'
+
+    let pixURL = `${pixBaseUrl}?key=${pixKey}&q=${cityName}`
+
     fetch(geoURL)
         .then(res => res.json())
         .then(data => {
