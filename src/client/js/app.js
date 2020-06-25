@@ -1,24 +1,24 @@
 const geoKey = 'wilsonyou'
 
-const geoURL = 'http://api.geonames.org/searchJSON'
+const geoBaseUrl = 'http://api.geonames.org/searchJSON'
 
 let cityName = 'newyork'
 
-let geoURL = `${geoURL}?q=${cityName}&maxRows=10&username=${geoKey}`
+let geoURL = `${geoBaseUrl}?q=${cityName}&maxRows=10&username=${geoKey}`
 
 const weatherBitKey = '7cf6ed38ae2148f1b6c4f7c5f4800e3d'
 
-const weatherBitURL = 'http://api.weatherbit.io/v2.0/forecast/daily'
+const weatherBitUrl = 'http://api.weatherbit.io/v2.0/forecast/daily'
 
 // const cityName = 'Raleigh,NC'
 
-let bitURL = `${weatherBitKey}?city=${cityName}&key=${weatherBitURL}`
+let bitURL = `${weatherBitKey}?city=${cityName}&key=${weatherBitUrl}`
 
 const pixKey = '17198963-812b30f1b4baff708364953dc'
 
-const pixURL = 'https://pixabay.com/api/'
+const pixBaseUrl = 'https://pixabay.com/api/'
 
-let pixURL = `${pixURL}?key=${pixKey}&q=${cityName}`
+let pixURL = `${pixBaseUrl}?key=${pixKey}&q=${cityName}`
 
 document.querySelector('#go').addEventListener('click', autoFectchData);
 
