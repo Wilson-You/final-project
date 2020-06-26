@@ -5,6 +5,7 @@ document.querySelector('#go').addEventListener('click', getGeoInfo);
 export function getGeoInfo() {
 
     let cityName = document.querySelector('#city').value
+    let date = document.querySelector('#date').value
 
     const geoKey = 'wilsonyou'
 
@@ -35,9 +36,19 @@ export function getGeoInfo() {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            document.querySelector('#describe').innerHTML = data.data[0].weather.description
-            document.querySelector('#temp').innerHTML = data.data[0].temp + '℃'
-            document.querySelector('#datetime').innerHTML = data.data[0].datetime
+
+            let description = ""
+            let temp = ""
+            for (let i = 0; i < 16; i++) {
+                if (date == data.data[i].datetime) {
+                    description = data.data[i].weather.description
+                    temp = data.data[i].temp + '℃'
+                }
+            }
+
+            document.querySelector('#describe').innerHTML = description
+            document.querySelector('#temp').innerHTML = temp
+            document.querySelector('#datetime').innerHTML = date
 
 
         }
