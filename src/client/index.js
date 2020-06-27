@@ -4,11 +4,6 @@ import './styles/style.scss'
 
 console.log("This is good")
 
-// export {
-//     getGeoInfo,
-//     getFutureWeatherData,
-//     getPixData,
-// }
 
 
 

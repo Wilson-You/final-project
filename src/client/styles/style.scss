@@ -16,7 +16,7 @@ body{
     box-shadow: 2px 2px 2px grey;
 }
 
-#date:hover {
+#date:hover, #dateend:hover {
     box-shadow: 2px 2px 2px grey;
 }
 
@@ -30,8 +30,14 @@ body{
 .cityinfo, button, .title, .dateinfo {
     margin: 10px;
 }
+button {
+    background: blue;
+    color: white;
+    width: 60px;
+    height: 30px;
+}
 
-#dest, #temp, #describe, #datetime, #img1{
+#dest, #temp, #describe, #datetime, #img1, #length {
     margin: 10px;
 }
 

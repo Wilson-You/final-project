@@ -38,6 +38,10 @@ Start the app in dev mode:
 
 2. Enter the `npm run dev` command, and the webpack server is started. The app opens a new page on your browser. Start using your app.
 
+## Etra
+
+The end date is added and the total length of the travel is displayed
+
 ## References
 
 1. For more info about **Jest**, refer to [Getting Started](https://jestjs.io/docs/en/getting-started).

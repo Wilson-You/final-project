@@ -1,11 +1,15 @@
 
 document.querySelector('#go').addEventListener('click', getGeoInfo);
 
+// getGeoInfo function starts the whole process of collecting API data from third parties
 
 export function getGeoInfo() {
 
+    // Get the city name, start date and end date as well as setting other variables
+
     let cityName = document.querySelector('#city').value
-    let date = document.querySelector('#date').value
+    let date_start = document.querySelector('#date').value
+    let date_end = document.querySelector('#dateend').value
 
     const geoKey = 'wilsonyou'
 
@@ -25,34 +29,47 @@ export function getGeoInfo() {
 
     let pixURL = `${pixBaseUrl}?key=${pixKey}&q=${cityName}`
 
+    // Fetch geo data from third party
     fetch(geoURL)
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            document.querySelector('#dest').innerHTML = data.geonames[0].name
-        })
+            let name = data.geonames[0].name
 
+            document.querySelector('#dest').innerHTML = "Destination: " + name
+            localStorage.setItem('name', name);
+            name = localStorage.getItem('name');
+
+
+        })
+    // Fetch weather data and set element values
     fetch(bitURL)
         .then(res => res.json())
         .then(data => {
             console.log(data)
-
             let description = ""
             let temp = ""
+            let datestart = new Date(date_start);
+            let dateend = new Date(date_end);
+            let difference_time = dateend.getTime() - datestart.getTime();
+            let total_days = difference_time / (1000 * 3600 * 24);
+
             for (let i = 0; i < 16; i++) {
-                if (date == data.data[i].datetime) {
+                if (date_start == data.data[i].datetime) {
                     description = data.data[i].weather.description
                     temp = data.data[i].temp + '℃'
                 }
             }
 
-            document.querySelector('#describe').innerHTML = description
-            document.querySelector('#temp').innerHTML = temp
-            document.querySelector('#datetime').innerHTML = date
-
+            document.querySelector('#describe').innerHTML = "Weather: " + description
+            document.querySelector('#temp').innerHTML = "Current temp: " + temp
+            document.querySelector('#datetime').innerHTML = "Current date: " + date_start
+            document.querySelector("#length").innerHTML = "Your trip is " + total_days + " days"
 
         }
         )
+    // Fetch images from web
+
     fetch(pixURL)
         .then(res => res.json())
         .then(data => {
@@ -62,44 +79,4 @@ export function getGeoInfo() {
         )
 
 }
-
-// export function getGeoInfo() {
-//     const geoInfoData = async (geoURL) => {
-//         const response = await fetch(geoURL);
-//         try {
-//             const geoData = await response.json();
-//             console.log(geoData);
-//             return geoData;
-//         } catch {
-//             console.log("error", error);
-//         }
-//     }
-// }
-
-// export function getFutureWeatherData() {
-//     const weatherBitData = async (bitURL) => {
-//         const response = await fetch(bitURL);
-//         try {
-//             const weatherData = await response.json();
-//             console.log(weatherData);
-//             return weatherData;
-//         } catch {
-//             console.log("error", error);
-//         }
-//     }
-// }
-
-// export function getPixData() {
-//     const pixBayData = async (pixURL) => {
-//         const response = await fetch(pixURL);
-//         try {
-//             const pixData = await response.json();
-//             console.log(pixData);
-//             return pixData;
-//         } catch {
-//             console.log("error", error);
-//         }
-//     }
-// }
-
 
