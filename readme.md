@@ -1,13 +1,15 @@
-# Weather-Journal App Project
+# Travel App Project
 
 ## Overview
 
-I worked hard on this project but still feel challenging.
+This project aims to provide weather checking for users who wants go to one place for fun.
+
+You can enter your destination and the date, and then you can get the weather info.
 
 ## Instructions
 
-Please check the scripts and send your feedback.
+Please input correct city name and date format, otherwise, weather info will not be displayed.
 
 ## Extras
 
-Thank you for your effort.
+Thank you for using the app.
