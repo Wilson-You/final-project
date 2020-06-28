@@ -1,5 +1,8 @@
-import { getGeoInfo } from './app'
+@jest-enviroment jsdom
 
-test('getGeoInfo', () => {
-    expect(getComputedStyle().toBeCalled())
+import { allDone } from './app';
+import { JSDOM } from 'jsdom';
+
+test('listen', () => {
+    expect(allDone).toBeDefined();
 });

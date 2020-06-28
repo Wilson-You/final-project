@@ -79,4 +79,8 @@ export function getGeoInfo() {
         )
 
 }
+export function allDone(date_start) {
+    console.log("Everyting is done since code executed")
+
+}
 

@@ -1,5 +1,4 @@
-import { listen } from './server'
-
+const startupMessage = require('./server');
 test('listen', () => {
-    expect(listen().toBeCalled())
+    expect(startupMessage).toBeDefined();
 });
