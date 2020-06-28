@@ -3,9 +3,14 @@ body{
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-#img1 {
-    width: 30%;
-    height: 30%;
+img {
+    width: 42%;
+    height: 42%;
+    border-radius: 3px;
+}
+
+img:hover{
+    box-shadow: 2px 2px 2px grey;
 }
 
 #city:hover {
@@ -24,7 +29,8 @@ body{
     width: 100%;
     margin: 10px;
     color: blue;
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .cityinfo, button, .title, .dateinfo {
@@ -39,6 +45,17 @@ button {
 
 #dest, #temp, #describe, #datetime, #img1, #length {
     margin: 10px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    color: blue;
+}
+#dest:hover, #temp:hover, #describe:hover, #datetime:hover, #length:hover {
+    background: blue;
+    color: white;
+    display: inline;
 }
 
 

@@ -69,7 +69,7 @@ export function getGeoInfo() {
             document.querySelector('#describe').innerHTML = "Weather: " + description
             document.querySelector('#temp').innerHTML = "Current temp: " + temp
             document.querySelector('#datetime').innerHTML = "Current date: " + date_start
-            document.querySelector("#length").innerHTML = "Your trip is " + total_days + " days"
+            document.querySelector("#length").innerHTML = "Your trip is " + total_days + " days long"
 
         }
         )
