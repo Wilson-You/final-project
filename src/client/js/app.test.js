@@ -1,8 +1,5 @@
-@jest-enviroment jsdom
-
 import { allDone } from './app';
-import { JSDOM } from 'jsdom';
-
 test('listen', () => {
+    global.document.body.innerHTML = `<div><button id="go" class="go"/></div>`
     expect(allDone).toBeDefined();
 });

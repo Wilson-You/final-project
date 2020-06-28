@@ -1,5 +1,10 @@
+// getGeoInfo function starts the whole process of collecting API data from third parties
+// 
 
-document.querySelector('#go').addEventListener('click', getGeoInfo);
+document.addEventListener('DOMContentLoaded', installEventListener);
+function installEventListener() {
+    document.querySelector('#go').addEventListener('click', getGeoInfo);
+}
 
 // getGeoInfo function starts the whole process of collecting API data from third parties
 
@@ -79,8 +84,8 @@ export function getGeoInfo() {
         )
 
 }
+
 export function allDone(date_start) {
     console.log("Everyting is done since code executed")
 
 }
-
