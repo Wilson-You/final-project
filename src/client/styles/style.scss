@@ -1,11 +1,20 @@
 body{
     background: #DCD8B5;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    flex-flow: column;
+}
+header {
+    color: blue;
+    
+}
+header, main {
+    margin: 0 auto;
 }
 
 img {
-    width: 42%;
-    height: 42%;
+    max-width: 15em;
+    max-height: 12em;
     border-radius: 3px;
 }
 
@@ -25,37 +34,35 @@ img:hover{
     box-shadow: 2px 2px 2px grey;
 }
 
-.headline {
-    width: 100%;
-    margin: 10px;
-    color: blue;
-    font-size: 25px;
-    font-weight: bold;
-}
-
 .cityinfo, button, .title, .dateinfo {
-    margin: 10px;
+    margin-bottom: 10px;
 }
 button {
     background: blue;
     color: white;
     width: 60px;
     height: 30px;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 #dest, #temp, #describe, #datetime, #img1, #length {
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
-.title {
-    font-size: 20px;
+h2 {
     font-weight: bold;
     color: blue;
 }
 #dest:hover, #temp:hover, #describe:hover, #datetime:hover, #length:hover {
     background: blue;
     color: white;
-    display: inline;
 }
 
+.summaryinfo {
+    margin: 0 auto;
+}
+.display {
+    margin: 0 auto;
+}
 

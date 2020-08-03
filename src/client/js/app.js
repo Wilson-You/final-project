@@ -38,37 +38,77 @@ export function getGeoInfo() {
     fetch(geoURL)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-            let name = data.geonames[0].name
+            console.log("geoURL", data)
+            let name = data.geonames[0].name + ', ' + data.geonames[0].countryName;
 
             document.querySelector('#dest').innerHTML = "Destination: " + name
             localStorage.setItem('name', name);
             name = localStorage.getItem('name');
-
 
         })
     // Fetch weather data and set element values
     fetch(bitURL)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-            let description = ""
-            let temp = ""
+            console.log("bitURL", data)
+            let description = [];
+            let temp = "";
             let datestart = new Date(date_start);
             let dateend = new Date(date_end);
             let difference_time = dateend.getTime() - datestart.getTime();
+            let highAndLow = [];
             let total_days = difference_time / (1000 * 3600 * 24);
+            let countRain = 0;
+            let countClouds = 0;
+            let countClear = 0;
+            for (let i = 0; i < data.data.length; i++) {
 
-            for (let i = 0; i < 16; i++) {
-                if (date_start == data.data[i].datetime) {
-                    description = data.data[i].weather.description
-                    temp = data.data[i].temp + '℃'
+                if (date_start <= data.data[i].datetime && data.data[i].datetime <= date_end) {
+                    description.push(data.data[i].weather.description);
+                    // description = [...new Set(description)];
+
+                    highAndLow.push(parseFloat(data.data[i].max_temp));
+                    highAndLow.push(parseFloat(data.data[i].min_temp));
+                    highAndLow = highAndLow.sort((a, b) => a - b);
+                    console.log(highAndLow);
+
                 }
             }
 
+
+            temp = highAndLow[0] + '~' + highAndLow[highAndLow.length - 1] + '℃';
+
+            description = description.toString();
+
+            for (let i = 0; i < description.length; i++) {
+                if (description.includes('rain')) {
+                    countRain++;
+                } else if (description.includes('clouds')) {
+                    countClouds++;
+                } else if (description.includes('Clear')) {
+                    countClear++;
+                }
+            }
+
+            if (countRain > countClouds && countClouds > countClear) {
+                description = 'Rains a lot';
+            } else if (countRain < countClouds && countClouds < countClear) {
+                description = 'Mostly clear sky';
+            } else if (countRain < countClouds && countClouds > countClear) {
+                description = 'Mostly cloudy';
+            } else if (countRain == countClouds && countClouds > countClear) {
+                description = 'Cloudy and rainy with some clear skys';
+            } else if (countRain < countClouds && countClouds == countClear) {
+                description = 'Mostly clear skys and cloudy with some rain';
+            } else if (countRain > countClouds && countClouds == countClear) {
+                description = 'Mostly rainy with some clouds and clear skys';
+            } else if (countRain == countClouds && countClouds == countClear) {
+                description = 'Rainly, runny and clear skys';
+            }
+
             document.querySelector('#describe').innerHTML = "Weather: " + description
-            document.querySelector('#temp').innerHTML = "Current temp: " + temp
-            document.querySelector('#datetime').innerHTML = "Current date: " + date_start
+            document.querySelector('#temp').innerHTML = "Temperatures: " + temp
+            document.querySelector('#datetime').innerHTML = "Start date: " + date_start
             document.querySelector("#length").innerHTML = "Your trip is " + total_days + " days long"
 
         }
@@ -79,7 +119,9 @@ export function getGeoInfo() {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            document.querySelector('#img1').innerHTML = `<img src='${data.hits[0].webformatURL}'>`
+            let randompic = Math.floor(Math.random() * data.hits.length);
+            console.log(randompic);
+            document.querySelector('#img1').innerHTML = `<img src='${data.hits[randompic].webformatURL}'>`;
         }
         )
 
